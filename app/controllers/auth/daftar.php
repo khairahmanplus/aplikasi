@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pdo_statement->bindValue(':kata_laluan', password_hash($_POST['kata_laluan'], PASSWORD_BCRYPT));
     $pdo_statement->execute();
 
-    // Notifikasi
+    // Notification
     $_SESSION['notifikasi'] = 'Maklumat berjaya didaftarkan. Anda boleh log masuk dengan maklumat yang telah didaftarkan.';
 
     // Redirect
