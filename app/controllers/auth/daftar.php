@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors_bag['pengesahan_kata_laluan'] = 'Medan pengesahan kata laluan diperlukan.';
     }
 
-    if (! empty($_POST['kata_laluan']) && empty($_POST['pengesahan_kata_laluan'])) {
+    if (! empty($_POST['kata_laluan']) && ! empty($_POST['pengesahan_kata_laluan'])) {
         if ($_POST['kata_laluan'] != $_POST['pengesahan_kata_laluan']) {
             $errors_bag['kata_laluan'] = 'Medan kata laluan tidak sama dengan medan pengesahan kata laluan';
         }
