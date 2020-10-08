@@ -38,8 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Database
     $pdo = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, DB_OPTIONS);
-    $sql_statement = 'INSERT INTO pengguna (nama, emel, kata_laluan) 
-    VALUES (:nama, :emel, :kata_laluan)';
+    $sql_statement = 'INSERT INTO pengguna (nama, emel, kata_laluan) VALUES (:nama, :emel, :kata_laluan)';
     $pdo_statement = $pdo->prepare($sql_statement);
     $pdo_statement->bindValue(':nama', $_POST['nama']);
     $pdo_statement->bindValue(':emel', $_POST['emel']);
