@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <label>Emel</label>
-                    <input class="form-control <?php echo isset($errors_bag['emel']) ? 'is-invalid' : null; ?>" type="email" name="emel">
+                    <input class="form-control <?php echo isset($errors_bag['emel']) ? 'is-invalid' : null; ?>" type="email" name="emel" value="<?php echo isset($_POST['emel']) ? $_POST['emel'] : null ?>">
                     <?php if (isset($errors_bag['emel'])): ?>
                         <div class="invalid-feedback"><?php echo $errors_bag['emel']; ?></div>
                     <?php endif; ?>
