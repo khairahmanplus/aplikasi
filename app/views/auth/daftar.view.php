@@ -5,7 +5,7 @@
 
             <?php if (isset($errors_bag)): ?>
                 <div class="alert alert-danger">
-                    <ul>
+                    <ul class="mb-0">
                         <?php foreach ($errors_bag as $message): ?>
                             <li><?php echo $message; ?></li>
                         <?php endforeach; ?>
