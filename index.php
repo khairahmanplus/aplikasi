@@ -9,7 +9,7 @@ $routes = include __DIR__ . '/app/routes/web.php';
 
 if (isset($routes[$uri])) {
     $path = __DIR__ . "/app/controllers/{$routes[$uri]}";
-
+    
     if (file_exists($path)) {
         include $path;
         die();
