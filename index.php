@@ -1,8 +1,8 @@
 <?php
 
-include __DIR__ . 'app/config.php';
-include __DIR__ . 'app/session.php';
-include __DIR__ . 'app/function.php';
+include __DIR__ . '/app/config.php';
+include __DIR__ . '/app/session.php';
+include __DIR__ . '/app/function.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
