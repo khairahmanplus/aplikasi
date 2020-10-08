@@ -17,7 +17,7 @@
 
                 <div class="form-group">
                     <label>Nama</label>
-                    <input class="form-control <?php echo isset($errors_bag['nama']) ? 'is-invalid' : null; ?>" type="text" name="nama">
+                    <input class="form-control <?php echo isset($errors_bag['nama']) ? 'is-invalid' : null; ?>" type="text" name="nama" value="<?php echo isset($_POST['nama']) ? $_POST['nama'] : null ?>">
                     <?php if (isset($errors_bag['nama'])): ?>
                         <div class="invalid-feedback"><?php echo $errors_bag['nama']; ?></div>
                     <?php endif; ?>
