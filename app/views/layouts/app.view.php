@@ -28,6 +28,15 @@
   </div>
 </nav>
 
+<?php if (isset($_SESSION['notifikasi'])): ?>
+    <div class="alert alert-success">
+        <div class="container">
+            <?php echo $_SESSION['notifikasi']; ?>
+            <?php unset($_SESSION['notifikasi']); ?>
+        </div>
+    </div>
+<?php endif; ?>
+
 <main class="my-5">
     <?php include APP_DIRECTORY . "/views/$view_name.view.php" ; ?>
 </main>

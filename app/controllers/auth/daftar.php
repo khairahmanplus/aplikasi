@@ -16,6 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors_bag['emel'] = 'Medan emel diperlukan.';
     }
 
+    if (! empty($_POST['emel'])) {
+        $pdo = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, DB_OPTIONS);
+        $sql_statement = 'SELECT EXISTS (SELECT * FROM pengguna WHERE emel = :emel) AS existence';
+        $pdo_statement = $pdo->prepare($sql_statement);
+        $pdo_statement->bindValue(':emel', $_POST['emel']);
+        $pdo_statement->execute();
+        $exists = $pdo_statement->fetchColumn();
+        if ($exists) {
+            $errors_bag['emel'] = 'Emel telah wujud di dalam pangkalan data.';
+        }
+    }
+
     if (empty($_POST['kata_laluan'])) {
         $errors_bag['kata_laluan'] = 'Medan kata laluan diperlukan.';
     }
@@ -43,6 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pdo_statement->bindValue(':nama', $_POST['nama']);
     $pdo_statement->bindValue(':emel', $_POST['emel']);
     $pdo_statement->bindValue(':kata_laluan', password_hash($_POST['kata_laluan'], PASSWORD_BCRYPT));
-    // Redirect
+    $pdo_statement->execute();
 
+    // Notifikasi
+    $_SESSION['notifikasi'] = 'Maklumat berjaya didaftarkan. Anda boleh log masuk dengan maklumat yang telah didaftarkan.';
+
+    // Redirect
+    $url = url('/');
+    header("Location: {$url}");
+    die();
 }
