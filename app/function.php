@@ -1,6 +1,6 @@
 <?php
 
-function get_view(string $layout_name, string $view_name, $data = [])
+function view(string $layout_name, string $view_name, $data = [])
 {
     extract($data);
 
@@ -9,14 +9,14 @@ function get_view(string $layout_name, string $view_name, $data = [])
     die();
 }
 
-function url(string $path)
-{
-    return APP_URL . $path ;
-}
-
-function abort(string $view_name)
+function abort(string $error_page)
 {    
-    include APP_DIRECTORY . "/views/errors/{$view_name}.view.php";
+    include APP_DIRECTORY . "/views/errors/{$error_page}.view.php";
 
     die();
+}
+
+function url(string $path)
+{
+    return APP_URL . $path;
 }

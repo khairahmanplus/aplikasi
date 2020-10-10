@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    get_view('app', 'auth/daftar');
+    view('app', 'auth/daftar');
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (count($errors_bag) > 0) {
-        get_view('app', 'auth/daftar', [
+        view('app', 'auth/daftar', [
             'errors_bag' => $errors_bag
         ]);
     }

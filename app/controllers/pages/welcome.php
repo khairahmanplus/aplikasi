@@ -1,3 +1,3 @@
 <?php
 
-get_view('app', 'welcome');
+view('app', 'welcome');

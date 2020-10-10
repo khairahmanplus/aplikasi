@@ -1,10 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>Pendaftaran Pengguna</h1>
+            <h1 class="font-weight-bold">Pendaftaran Pengguna</h1>
+            <hr>
 
             <?php if (isset($errors_bag)): ?>
                 <div class="alert alert-danger">
+                    <p class="font-weight-bold">Terdapat masalah berlaku dengan maklumat yang anda berikan:</p>
                     <ul class="mb-0">
                         <?php foreach ($errors_bag as $message): ?>
                             <li><?php echo $message; ?></li>
@@ -17,7 +19,7 @@
 
                 <div class="form-group">
                     <label>Nama</label>
-                    <input class="form-control <?php echo isset($errors_bag['nama']) ? 'is-invalid' : null; ?>" type="text" name="nama" value="<?php echo isset($_POST['nama']) ? $_POST['nama'] : null ?>">
+                    <input class="form-control <?php echo isset($errors_bag['nama']) ? 'is-invalid' : null; ?>" type="text" name="nama" value="<?php echo isset($_POST['nama']) ? $_POST['nama'] : null ?>" autofocus>
                     <?php if (isset($errors_bag['nama'])): ?>
                         <div class="invalid-feedback"><?php echo $errors_bag['nama']; ?></div>
                     <?php endif; ?>
