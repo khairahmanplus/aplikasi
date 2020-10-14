@@ -16,13 +16,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbar-menu">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a href="<?php echo url('/home'); ?>" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="<?php echo url('/about'); ?>" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="<?php echo url('/contact-us'); ?>" class="nav-link">Contact Us</a></li>
+            <?php if (is_authenticated()): ?>
+                <li class="nav-item"><a href="<?php echo url('/home'); ?>" class="nav-link">Home</a></li>
+            <?php else: ?>
+                <li class="nav-item"><a href="<?php echo url('/about'); ?>" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="<?php echo url('/contact-us'); ?>" class="nav-link">Contact Us</a></li>
+            <?php endif; ?>
         </ul>
         <ul class="navbar-nav">
-            <li class="nav-item"><a href="<?php echo url('/daftar'); ?>" class="nav-link">Daftar</a></li>
-            <li class="nav-item"><a href="<?php echo url('/log-masuk'); ?>" class="nav-link">Log Masuk</a></li>
+            <?php if (is_authenticated()): ?>
+                <li class="nav-item"><a href="<?php echo url('/log-keluar'); ?>" class="nav-link">Log Keluar</a></li>
+            <?php else: ?>
+                <li class="nav-item"><a href="<?php echo url('/daftar'); ?>" class="nav-link">Daftar</a></li>
+                <li class="nav-item"><a href="<?php echo url('/log-masuk'); ?>" class="nav-link">Log Masuk</a></li>
+            <?php endif; ?>
         </ul>
     </div>
   </div>

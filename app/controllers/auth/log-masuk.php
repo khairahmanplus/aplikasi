@@ -30,16 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors_bag['emel'] = 'Emel yang diberikan tidak wujud di dalam pangkalan data.';
         }
     }
-    
 
-    if (! empty($_POST['emel'] && ! $_POST['kata_laluan'])) {
+    $user = null;
+    
+    if (! empty($_POST['emel']) && ! empty($_POST['kata_laluan'])) {
         $sql_statement = 'SELECT * FROM pengguna WHERE emel = :emel';
         $pdo_statement = $pdo->prepare($sql_statement);
         $pdo_statement->bindValue(':emel', $_POST['emel']);
         $pdo_statement->execute();
         $user = $pdo_statement->fetch();
 
-        if (! password_verify($_POST['kata_laluan'], $user->password)) {
+        if (! password_verify($_POST['kata_laluan'], $user->kata_laluan)) {
             $errors_bag['emel'] = 'Medan emel dan kata laluan tidak sepadan.';
         }
     }
@@ -51,7 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Generate new session ID
-    session_regenerate_id();
+    // Session Fixation
+    session_regenerate_id(true);
     // Cipta satu key unik berdasarkan session ID
     $key = 'web_login_' . session_id();
     // Simpan id pengguna dengan menggunakan key unik

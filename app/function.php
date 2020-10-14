@@ -42,3 +42,10 @@ function pdo()
 
     return $pdo;
 }
+
+function is_authenticated()
+{
+    $key = 'web_login_' . session_id();
+
+    return isset($_SESSION[$key]);
+}
