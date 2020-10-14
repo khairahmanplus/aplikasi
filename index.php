@@ -1,5 +1,7 @@
 <?php
 
+
+
 include __DIR__ . '/app/config.php';
 include __DIR__ . '/app/session.php';
 include __DIR__ . '/app/function.php';
@@ -17,6 +19,7 @@ if (isset($routes[$uri])) {
         }
 
         include $path;
+
         die();
 
     } catch (Throwable $throwable) {

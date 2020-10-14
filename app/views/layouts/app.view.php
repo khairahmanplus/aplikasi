@@ -7,62 +7,61 @@
     <link rel="stylesheet" href="<?php echo url ('/css/bootstrap.min.css');?>">
 </head>
 <body>
-<!-- As a link -->
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
-  <div class="container">
-    <a class="navbar-brand" href="<?php echo url('/'); ?>">Aplikasi</a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-menu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar-menu">
-        <ul class="navbar-nav mr-auto">
-            <?php if (is_authenticated()): ?>
-                <li class="nav-item"><a href="<?php echo url('/home'); ?>" class="nav-link">Home</a></li>
-            <?php else: ?>
-                <li class="nav-item"><a href="<?php echo url('/about'); ?>" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="<?php echo url('/contact-us'); ?>" class="nav-link">Contact Us</a></li>
-            <?php endif; ?>
-        </ul>
-        <ul class="navbar-nav">
-            <?php if (is_authenticated()): ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                        <?php echo authenticated_user()->nama ?? '-' ?>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="<?php echo url('/log-keluar'); ?>">Log Keluar</a>
-                    </div>
-                </li>
-            <?php else: ?>
-                <li class="nav-item"><a href="<?php echo url('/daftar'); ?>" class="nav-link">Daftar</a></li>
-                <li class="nav-item"><a href="<?php echo url('/log-masuk'); ?>" class="nav-link">Log Masuk</a></li>
-            <?php endif; ?>
-        </ul>
-    </div>
-  </div>
-</nav>
-
-<?php if (isset($_SESSION['notifikasi'])): ?>
-    <div class="alert alert-success">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <div class="container">
-            <?php echo $_SESSION['notifikasi']; ?>
-            <?php unset($_SESSION['notifikasi']); ?>
+            <a class="navbar-brand" href="<?php echo url('/'); ?>">Aplikasi</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="navbar-nav mr-auto">
+                    <?php if (is_authenticated()): ?>
+                        <li class="nav-item"><a href="<?php echo url('/home'); ?>" class="nav-link">Home</a></li>
+                    <?php else: ?>
+                        <li class="nav-item"><a href="<?php echo url('/about'); ?>" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="<?php echo url('/contact-us'); ?>" class="nav-link">Contact Us</a></li>
+                    <?php endif; ?>
+                </ul>
+                <ul class="navbar-nav">
+                    <?php if (is_authenticated()): ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                <?php echo authenticated_user()->nama ?? '-' ?>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="<?php echo url('/log-keluar'); ?>">Log Keluar</a>
+                            </div>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item"><a href="<?php echo url('/daftar'); ?>" class="nav-link">Daftar</a></li>
+                        <li class="nav-item"><a href="<?php echo url('/log-masuk'); ?>" class="nav-link">Log Masuk</a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
         </div>
-    </div>
-<?php endif; ?>
+    </nav>
 
-<main class="my-5">
-    <?php 
+    <?php if (isset($_SESSION['notifikasi'])): ?>
+        <div class="alert alert-success">
+            <div class="container">
+                <?php echo $_SESSION['notifikasi']; ?>
+                <?php unset($_SESSION['notifikasi']); ?>
+            </div>
+        </div>
+    <?php endif; ?>
 
-    $view_path = APP_DIRECTORY . "/views/{$view_name}.view.php";
+    <main class="my-5">
+        <?php 
 
-    if (! file_exists($view_path)) {
-        throw new Exception("View pada direktori {$view_path} tidak wujud.");
-    }
+        $view_path = APP_DIRECTORY . "/views/{$view_name}.view.php";
 
-    include $view_path; 
-    ?>
-</main>
+        if (! file_exists($view_path)) {
+            throw new Exception("View pada direktori {$view_path} tidak wujud.");
+        }
+
+        include $view_path; 
+        ?>
+    </main>
 
 <script src="<?php echo url ('/js/jquery.min.js');?>"></script>
 <script src="<?php echo url ('/js/popper.min.js');?>"></script>

@@ -7,4 +7,5 @@ return [
     '/contact-us'       => 'pages/contact-us.php',
     '/daftar'           => 'auth/daftar.php',
     '/log-masuk'        => 'auth/log-masuk.php',
+    '/log-keluar'       => 'auth/log-keluar.php'
 ];
