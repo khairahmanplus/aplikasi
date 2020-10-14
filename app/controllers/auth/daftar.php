@@ -5,6 +5,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Asynchronous
+    $pdo = null;
+
+    if (is_null($pdo)) {
+        try {
+            $pdo = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, DB_OPTIONS);
+        } catch (Throwable $throwable) {
+            echo $throwable->getMessage();
+            die();
+        }
+    }
+
     // Validation
     $errors_bag = [];
 
@@ -17,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (! empty($_POST['emel'])) {
-        $pdo = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, DB_OPTIONS);
         $sql_statement = 'SELECT EXISTS (SELECT * FROM pengguna WHERE emel = :emel) AS existence';
         $pdo_statement = $pdo->prepare($sql_statement);
         $pdo_statement->bindValue(':emel', $_POST['emel']);
@@ -49,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Database
-    $pdo = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, DB_OPTIONS);
     $sql_statement = 'INSERT INTO pengguna (nama, emel, kata_laluan) VALUES (:nama, :emel, :kata_laluan)';
     $pdo_statement = $pdo->prepare($sql_statement);
     $pdo_statement->bindValue(':nama', $_POST['nama']);
