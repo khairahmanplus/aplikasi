@@ -25,7 +25,14 @@
         </ul>
         <ul class="navbar-nav">
             <?php if (is_authenticated()): ?>
-                <li class="nav-item"><a href="<?php echo url('/log-keluar'); ?>" class="nav-link">Log Keluar</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                        <?php echo authenticated_user()->nama ?? '-' ?>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="<?php echo url('/log-keluar'); ?>">Log Keluar</a>
+                    </div>
+                </li>
             <?php else: ?>
                 <li class="nav-item"><a href="<?php echo url('/daftar'); ?>" class="nav-link">Daftar</a></li>
                 <li class="nav-item"><a href="<?php echo url('/log-masuk'); ?>" class="nav-link">Log Masuk</a></li>

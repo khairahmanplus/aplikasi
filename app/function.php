@@ -49,3 +49,19 @@ function is_authenticated()
 
     return isset($_SESSION[$key]);
 }
+
+function authenticated_user()
+{
+    if (is_authenticated()) {
+        $key = 'web_login_' . session_id();
+        $pdo = pdo();
+        $sql_statement = 'SELECT * FROM pengguna WHERE id = :id';
+        $pdo_statement = $pdo->prepare($sql_statement);
+        $pdo_statement->bindValue(':id', $_SESSION[$key]);
+        $pdo_statement->execute();
+        $user = $pdo_statement->fetch();
+        return $user;
+    }
+
+    return null;
+}
