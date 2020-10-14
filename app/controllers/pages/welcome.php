@@ -1,3 +1,0 @@
-<?php
-
-view('app', 'welcome');
