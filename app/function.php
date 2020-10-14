@@ -11,6 +11,7 @@ function view(string $layout_name, string $view_name, $data = [])
     }
 
     include $layout_path;
+    
     die();
 }
 

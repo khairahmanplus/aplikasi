@@ -24,8 +24,17 @@
   </div>
 </nav>
 
-<main>
-    <?php include APP_DIRECTORY . "/views/$view_name.view.php" ; ?>
+<main class="my-5">
+    <?php 
+
+    $view_path = APP_DIRECTORY . "/views/{$view_name}.view.php";
+
+    if (! file_exists($view_path)) {
+        throw new Exception("View pada direktori {$view_path} tidak wujud.");
+    }
+
+    include $view_path; 
+    ?>
 </main>
 
 
