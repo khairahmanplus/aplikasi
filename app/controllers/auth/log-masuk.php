@@ -23,12 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql_statement = 'SELECT EXISTS(SELECT * FROM pengguna WHERE emel = :emel) AS existence';
         $pdo_statement = $pdo->prepare($sql_statement);
         $pdo_statement->bindValue(':emel', $_POST['emel']);
+        $pdo_statement->execute();
         $exists = $pdo_statement->fetchColumn();
 
         if (! $exists) {
             $errors_bag['emel'] = 'Emel yang diberikan tidak wujud di dalam pangkalan data.';
         }
     }
-
-    
 }
