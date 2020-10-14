@@ -30,5 +30,3 @@ if (isset($routes[$uri])) {
 if (preg_match('/\.(?:css|js|png|jpg|jpeg|gif)$/', $uri)) {
     return false;
 }
-
-abort('404');

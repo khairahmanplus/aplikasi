@@ -5,17 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    $pdo = null;
 
-    if (is_null($pdo)) {
-        try {
-            $pdo = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, DB_OPTIONS);
-        } catch (Throwable $throwable) {
-            echo $throwable->getMessage();
-            die();
-        }
-    }
+    $pdo = pdo();
 
     // Validation
     $errors_bag = [];

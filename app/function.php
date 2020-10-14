@@ -26,3 +26,19 @@ function url(string $path)
 {
     return APP_URL . $path;
 }
+
+function pdo()
+{
+    static $pdo = null;
+
+    if (is_null($pdo)) {
+        try {
+            $pdo = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, DB_OPTIONS);
+        } catch (Throwable $throwable) {
+            echo $throwable->getMessage();
+            die();
+        }
+    }
+
+    return $pdo;
+}
