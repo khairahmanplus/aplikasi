@@ -51,12 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
     }
 
-    // Generate new session ID
-    // Session Fixation
+    // Jana session ID yang baru bagi mengelakkan serangan session fixation
     session_regenerate_id(true);
     // Cipta satu key unik berdasarkan session ID
     $key = 'web_login_' . session_id();
-    // Simpan id pengguna dengan menggunakan key unik
+    // Simpan id pengguna pada session
     $_SESSION[$key] = $user->id;
     // Notifikasi
     $_SESSION['notifikasi'] = 'Anda berjaya log masuk ke dalam aplikasi.';

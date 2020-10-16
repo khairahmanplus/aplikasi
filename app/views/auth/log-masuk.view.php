@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>Log Masuk Pengguna</h1>
+            <h1 class="font-weight-bold">Log Masuk Pengguna</h1>
             <hr>
 
             <form action="" method="post">

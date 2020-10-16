@@ -14,9 +14,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto">
                     <?php if (is_authenticated()): ?>
                         <li class="nav-item"><a href="<?php echo url('/home'); ?>" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="<?php echo url('/pengguna'); ?>" class="nav-link">Pengguna</a></li>
                     <?php else: ?>
                         <li class="nav-item"><a href="<?php echo url('/about'); ?>" class="nav-link">About</a></li>
                         <li class="nav-item"><a href="<?php echo url('/contact-us'); ?>" class="nav-link">Contact Us</a></li>
@@ -63,8 +64,18 @@
         ?>
     </main>
 
-<script src="<?php echo url ('/js/jquery.min.js');?>"></script>
-<script src="<?php echo url ('/js/popper.min.js');?>"></script>
-<script src="<?php echo url ('/js/bootstrap.min.js');?>"></script>
+    <script src="<?php echo url ('/js/jquery.min.js');?>"></script>
+    <script src="<?php echo url ('/js/popper.min.js');?>"></script>
+    <script src="<?php echo url ('/js/bootstrap.min.js');?>"></script>
+    <script>
+        $('document').ready(function () {
+            $('#pengesahan-tindakan').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var href = button.prop('href');
+                var modal = $(this);
+                modal.find('#borang-buang-rekod').prop('action', href);
+            })
+        });
+    </script>
 </body>
 </html>

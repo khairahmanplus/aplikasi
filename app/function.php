@@ -22,9 +22,13 @@ function abort(string $error_page)
     die();
 }
 
-function url(string $path)
+function url(string $path, array $query_string = [])
 {
-    return APP_URL . $path;
+    if (empty($query_string)) {
+        return APP_URL . $path;
+    }
+    
+    return APP_URL . $path . '?' . http_build_query($query_string);
 }
 
 function pdo()
